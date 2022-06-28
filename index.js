@@ -16,13 +16,13 @@ app.get("/", (req, res) => {
 
 app.get("/news", (req, res) => {
   axios
-    .get(`https://www.irishtimes.com/ireland/`)
+    .get(`https://www.irishnews.com/news/`)
     .then((response) => {
       const html = response.data;
       const $ = cheerio.load(html);
-      //cheerio not target correct anchor tag. Title and URL not being pushed to array
-      $(``);
-      $(`a:contains("ireland")`, html).each(function () {
+
+      //!Only targets first anchor tag on the page!/
+      $(`a:contains("irishnews")`, html).each(function () {
         const title = $(this).text();
         const url = $(this).attr(`href`);
         articles.push({
