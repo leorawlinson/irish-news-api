@@ -29,15 +29,13 @@ app.get("/news", (req, res) => {
 
       //target each article and use the child elements in the article tag?? or use cheerio twice to target different elements??
 
-      // $(`.article:contains("irishnews")`, html).each(function () {
-      //   const url = $(this).attr(`href`);
-      //   articles.push({
-      //     url,
-      //   });
-
-      //   $(``);
-      // });
-      // res.json(articles);
+      $(`article:contains("irishnews")`, html).each(function () {
+        const url = $(this).attr(`href`);
+        articles.push({
+          url,
+        });
+      });
+      res.json(articles);
     })
     .catch((err) => console.log(err));
 });
