@@ -21,16 +21,23 @@ app.get("/news", (req, res) => {
       const html = response.data;
       const $ = cheerio.load(html);
 
+      const article = $(`article`);
+
+      console.log(article);
+
       //!Only targets first anchor tag on the page!/
-      $(`a:contains("irishnews")`, html).each(function () {
-        const title = $(this).text();
-        const url = $(this).attr(`href`);
-        articles.push({
-          title,
-          url,
-        });
-      });
-      res.json(articles);
+
+      //target each article and use the child elements in the article tag?? or use cheerio twice to target different elements??
+
+      // $(`.article:contains("irishnews")`, html).each(function () {
+      //   const url = $(this).attr(`href`);
+      //   articles.push({
+      //     url,
+      //   });
+
+      //   $(``);
+      // });
+      // res.json(articles);
     })
     .catch((err) => console.log(err));
 });
